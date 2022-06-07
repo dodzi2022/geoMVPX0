@@ -5,6 +5,7 @@ pipeline {
     }
     environment {
         registry = '259289693704.dkr.ecr.us-east-2.amazonaws.com/geolocation_ecr_rep'
+        registryCredential = 'jenkins-ecr'
         dockerimage = '' 
     }
     stages {
@@ -27,7 +28,7 @@ pipeline {
         stage('Building image') {
             steps{
                 script {
-                    dockerImage = docker.build registry
+                    dockerImage= docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
@@ -35,8 +36,8 @@ pipeline {
         stage('Pushing to ECR') {
             steps{
                 script {
-                    sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 259289693704.dkr.ecr.us-east-2.amazonaws.com'
-                    sh 'docker push 259289693704.dkr.ecr.us-east-2.amazonaws.com/geolocation_ecr_rep:latest'
+                    docker.withRegistry("https://"+registry,"ecr:us-east-2:"+registryCredential) {
+                        dockerImage.push()
                 }
             }
         }
