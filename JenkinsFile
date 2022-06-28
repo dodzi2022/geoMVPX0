@@ -13,6 +13,13 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Hermann90/geolocation.git'
             }
         }
+        // Sonarqube Code testing
+        stage ('SonarQube Code Testing'){
+         
+         sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=dodzi2022_geoMVPX0'
+          
+        }
+        
         stage('Code Build') {
             steps {
                 sh 'mvn clean package'
@@ -23,6 +30,7 @@ pipeline {
                 sh 'mvn test'
             }
         }
+        
         // Building Docker images
         stage('Building image') {
             steps{
