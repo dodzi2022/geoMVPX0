@@ -15,9 +15,9 @@ pipeline {
         }
         // Sonarqube Code testing
         stage ('SonarQube Code Testing'){
-         
+          steps{
          sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=dodzi2022_geoMVPX0'
-          
+               }   
         }
         
         stage('Code Build') {
