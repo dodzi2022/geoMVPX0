@@ -13,12 +13,17 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Hermann90/geolocation.git'
             }
         }
-        // Sonarqube Code testing
-        stage ('SonarQube Code Testing'){
-          steps{
-         sh 'mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=dodzi2022_geoMVPX0'
-               }   
-        }
+       stage('SonarQube analysis') {
+    def scannerHome = tool 'sonarqube';
+    withSonarQubeEnv('sonarqube') {
+      sh "${scannerHome}/opt/sonar-scanner \
+      -D sonar.login=8739b5ca19d023862eb4539e1cdb59a48e682cac \
+      -D sonar.projectKey=dodzi2022_geoMVPX0 \
+      -D sonar.exclusions=vendor/**,resources/**,**/*.java \
+      -D sonar.host.url=https://sonarcloud.io"
+        } 
+        
+    }
         
         stage('Code Build') {
             steps {
