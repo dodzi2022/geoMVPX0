@@ -16,16 +16,7 @@ pipeline {
         }
        stage('SonarQube analysis') {
            steps{
-                   
-                   
-                   sh "/opt/sonar-scanner/bin/sonar-scanner -X \
-                   -D sonar.organization=dodzi2022 \
-                   -D sonar.login=8739b5ca19d023862eb4539e1cdb59a48e682cac \
-                   -D sonar.projectKey=dodzi2022_geoMVPX0 \
-                   -D sonar.sources=src \
-                   -D sonar.java.binaries=. \
-                   -D sonar.host.url=https://sonarcloud.io \
-                   -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400"
+                sh '  sonar:sonar '
        
         
     }
