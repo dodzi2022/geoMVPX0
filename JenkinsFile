@@ -15,11 +15,14 @@ pipeline {
             }
         }
        stage('SonarQube analysis') {
-           steps{
-                sh '  mvn sonar:sonar '
-       
-        
-    }
+        steps {
+                withSonarQubeEnv('SonarQube') {
+                    // Optionally use a Maven environment you've configured already
+                    withMaven(maven:'Maven 3.5') {
+                        sh 'sonar:sonar'
+                    }
+                }
+            }
   }    
         stage('Code Build') {
             steps {
