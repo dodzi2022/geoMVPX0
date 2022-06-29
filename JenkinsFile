@@ -18,7 +18,7 @@ pipeline {
            steps{
                    
                    
-                   sh "/opt/sonar-scanner/bin/sonar-scanner \
+                   sh "/opt/sonar-scanner/bin/sonar-scanner -X \
                    -D sonar.login=8739b5ca19d023862eb4539e1cdb59a48e682cac \
                    -D sonar.projectKey=dodzi2022_geoMVPX0 \
                    -D sonar.sources=src \
