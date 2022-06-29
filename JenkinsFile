@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools{
         maven 'M2_HOME'
-        def scannerHome = tool 'sonarqube';
+        
     }
     environment {
         registry = '076892551558.dkr.ecr.us-east-1.amazonaws.com/geolocation_ecr_rep'
@@ -15,15 +15,13 @@ pipeline {
             }
         }
        stage('SonarQube analysis') {
-           
-    
-    steps{
-    withSonarQubeEnv('sonarqube') {
-      sh "${scannerHome}/opt/sonar-scanner \
-      -D sonar.login=8739b5ca19d023862eb4539e1cdb59a48e682cac \
-      -D sonar.projectKey=dodzi2022_geoMVPX0 \
-      -D sonar.exclusions=vendor/**,resources/**,**/*.java \
-      -D sonar.host.url=https://sonarcloud.io"
+           steps{
+                   withSonarQubeEnv('sonarqube') {
+                   sh "${scannerHome}/opt/sonar-scanner \
+                   -D sonar.login=8739b5ca19d023862eb4539e1cdb59a48e682cac \
+                   -D sonar.projectKey=dodzi2022_geoMVPX0 \
+                   -D sonar.exclusions=vendor/**,resources/**,**/*.java \
+                   -D sonar.host.url=https://sonarcloud.io"
         } 
         
     }
