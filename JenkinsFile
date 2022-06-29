@@ -16,7 +16,7 @@ pipeline {
         }
        stage('SonarQube analysis') {
         steps {
-                withSonarQubeEnv('SonarQube') {
+               
                     // Optionally use a Maven environment you've configured already
                    
                         sh  '/opt/sonar-scanner/bin/sonar-scanner \
@@ -25,7 +25,7 @@ pipeline {
                               -Dsonar.organization=dodzi2022 \
                               -Dsonar.projectKey=dodzi2022_geoMVPX0'
                     
-                }
+                
             }
   }    
         stage('Code Build') {
