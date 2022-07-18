@@ -17,4 +17,4 @@ spec:
         image: 259289693704.dkr.ecr.us-east-2.amazonaws.com/geolocation_ecr_rep
         imagePullPolicy: Always
         ports:
-        - containerPort: 8082
+        - containerPort: 80
