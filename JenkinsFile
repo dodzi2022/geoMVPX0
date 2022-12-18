@@ -39,7 +39,7 @@ pipeline {
                     
              //     docker.withRegistry("https://"+registry,"ecr:us-east-2:"+registryCredential) {
               //          dockerImage.push()
-                    }
+              //      }
                }
             }
         }
