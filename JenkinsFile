@@ -49,7 +49,7 @@ pipeline {
                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'eks_credential', namespace: '', serverUrl: '') {
                   // sh "sudo /root/bin/kubectl apply -f  eks_deploy_from_ecr.yaml"
                  // sh "sudo /root/bin/kubectl apply -f  service.yaml"
-                  sh " kubectl get nodes "
+                  sh " /root/bin/kubectl get nodes "
                 }
             }
         }
