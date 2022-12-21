@@ -48,10 +48,10 @@ pipeline {
         stage ("Kube Deploy") {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'eks_credential', namespace: '', serverUrl: '') {
-                  // sh "sudo /root/bin/kubectl apply -f  eks_deploy_from_ecr.yaml"
-                  //sh "sudo /root/bin/kubectl apply -f  service.yaml"
+                  sh "sudo /root/bin/kubectl apply -f  eks_deploy_from_ecr.yaml --kubeconfig=/root/.kube/config"
+                  sh "sudo /root/bin/kubectl apply -f  service.yaml  --kubeconfig=/root/.kube/config "
                   
-                  sh "whoami"
+                  
                  
                 }
             }
